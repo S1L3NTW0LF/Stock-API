@@ -1,5 +1,5 @@
 # Stock API
-Retrieves json objects from api then converts them into csv files for later analysis
+##### Retrieves json objects from API then converts them into csv files for later analysis
 
 ---
 ### Part I (collect_data.ipynb)
@@ -10,13 +10,14 @@ Retrieves json objects from api then converts them into csv files for later anal
 ### Part II (stock-json.ipynb)
 - loops through all files in json_files folder
 - transforms json file into dataframes 
-- calculate the percent price change following earnings announcement
+- calculates the yearly percent price change following earnings announcement
 - writes individual stock data into stock-sets folder
 - writes all data to master-df.csv
 
 ---
 ### Notes
 - stock data only goes back up to 5 years
+- percent price change is calcuated using weekly prices from 5-11 days after to 341-347 after
 - functions.py contains functions used in notebooks
 - different errors are written to csv files in errors-list folder
 - screener_results.csv contain all the stocks found on Fidelity website
