@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 def make_api_call_for_financial_statements(symbol, key):
     
@@ -22,13 +23,44 @@ def make_api_call_for_price_time_series(symbol, key):
     
     return price_data
 
-def extract_single_set_of_financial_statements(income_data, cashflow_data, balancesheet_data, years_back):
+def extract_single_set_of_financial_statements(json_file, years_back=0):
     
-    years_back += 1
-    
-    inc_data = income_data['annualReports'][-years_back].copy()
-    cas_data = cashflow_data['annualReports'][-years_back].copy()
-    bal_data = balancesheet_data['annualReports'][-years_back].copy()
-    
+    inc_data = json_file['income_data']['annualReports'][years_back]
+    cas_data = json_file['cash_data']['annualReports'][years_back]
+    bal_data = json_file['balance_data']['annualReports'][years_back]
+                         
     return inc_data, cas_data, bal_data
+                         
+                         
+def extract_stock_details(json_file):
+    
+    ticker = json_file['ticker']
+    sector = json_file['sector']
+    industry = json_file['industry']
+    
+    return ticker, sector, industry
 
+def extract_price_data(json_file):
+            
+    price_data = json_file['price_data']
+      
+    return price_data
+
+def changes_date_to_following_friday(weekday, first_date):
+# changes the date to the following friday if it is a weekday 
+    if  weekday == 1: # Monday  
+        first_date += datetime.timedelta(11)
+    elif weekday == 2: 
+        first_date += datetime.timedelta(10)
+    elif weekday == 3: 
+        first_date += datetime.timedelta(9)
+    elif weekday == 4: 
+        first_date += datetime.timedelta(8)
+    elif weekday == 5: 
+        first_date += datetime.timedelta(7) 
+    elif weekday == 6: 
+        first_date += datetime.timedelta(6)
+    elif weekday == 0: # Sunday 
+        first_date += datetime.timedelta(5)
+
+    return first_date
