@@ -17,7 +17,7 @@
 ---
 ### Notes
 - stock data only goes back up to 5 years
-- percent price change is calcuated using weekly prices from 5-11 days after to 341-347 after
+- percent price change is calcuated using weekly prices from 5-11 days after to 341-347 after earnings announcement
 - functions.py contains functions used in notebooks
 - different errors are written to csv files in errors-list folder
 - screener_results.csv contain all the stocks found on Fidelity website
